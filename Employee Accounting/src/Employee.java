@@ -26,7 +26,7 @@ public class Employee {
     @Override
     public String toString() {
         String info = "Employee " +
-                "id = " + "000" + id +
+                "id = 000" + id +
                 ", name = " + name +
                 ", gender = " + gender +
                 ", age = " + age +

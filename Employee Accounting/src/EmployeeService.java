@@ -11,11 +11,25 @@ public class EmployeeService {
         this.employees = employees;
     }
 
-     public void printEmployees() {
+    public void printEmployees() {
         for (Employee employee : employees) {
             System.out.println(employee);
         }
     }
+
+    public static void printEmployees(Employee employee) {
+        if (employee != null) {
+            System.out.println("Employee " +
+                    "id = 000" + employee.id +
+                    ", name = " + employee.name +
+                    ", gender = " + employee.gender +
+                    ", age = " + employee.age +
+                    ", salary = " + employee.salary + " USD");
+        } else {
+            System.out.println("There is no such employee with this ID ");
+        }
+    }
+
 
 
     // возвращает количество денег необходимое для выплаты зарплат для всех сотрудников в этом месяце
@@ -44,7 +58,7 @@ public class EmployeeService {
 
     //возвращает сотрудника по заданному id
 
-    Employee getById(long id){
+    Employee getById(int id){
         for (Employee employee : employees) {
             if (employee.id == id) {
                 return employee;
@@ -52,6 +66,7 @@ public class EmployeeService {
         }
         return null;
     }
+
 
 
     // возвращает сотрудника по заданному имени
@@ -92,9 +107,42 @@ public class EmployeeService {
 
 
     // находит сотрудника по id, и подменяет информацию о нем на новую. Старую версию сотрудника метод возвращает.
-    //Employee edit(Employee);
-
+    Employee edit(Employee employee) {
+        Employee findEmployee = getById(employee.id);
+        Employee editEmployee = null;
+        if (findEmployee != null) {
+            for (int i = 0; i < employees.length; i++) {
+                if (employees[i].id == employee.id) {
+                    editEmployee = employees[i];
+                    employees[i] = employee;
+                    break;
+                }
+            }
+        }
+        return editEmployee;
+    }
 
     // находит сотрудника по id, и удаляет его из массива. Возвращает ссылку на удаленного сотрудника.
-    //Employee remove(long id);
+
+    Employee remove(long id) {
+        int index = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].id == id) {
+                index = i;
+                break;
+            }
+        }
+        Employee[] newEmployeesArray = new Employee[employees.length -1];
+        int counter = 0;
+        for( int i = 0; i< employees.length; i++) {
+            if (i != index) {
+                newEmployeesArray[counter] = employees[i];
+                counter++;
+            }
+        }
+        Employee removeEmployee = employees[index];
+        employees = newEmployeesArray;
+
+        return removeEmployee;
+    }
 }
