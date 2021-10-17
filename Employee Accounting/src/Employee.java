@@ -7,6 +7,7 @@ public class Employee {
     String gender;
     int fixedBugs;
     double defaultBugRate;
+    int count = 1;
 
     Employee() {
         System.out.println("Creation of employee in progress!");
@@ -22,6 +23,7 @@ public class Employee {
         this.defaultBugRate = defaultBugRate;
     }
 
+    @Override
     public String toString() {
         String info = "Employee " +
                 "id = " + "000" + id +
@@ -49,6 +51,11 @@ public class Employee {
     double calculateBonus(){
         return ((int)(fixedBugs()/defaultBugRate()) * 100);
     }
+
+    public String getName() {
+        return name;
+    }
+
 
 
 }
