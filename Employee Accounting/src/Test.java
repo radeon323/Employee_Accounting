@@ -33,9 +33,19 @@ public class Test {
     System.out.println("----------------remove------------------");
     System.out.println("Removed " + service.remove((1L)));
     System.out.println();
+    System.out.println("----------------printEmployees------------------");
+    service.printEmployees();
+    System.out.println();
     System.out.println("----------------add------------------");
-    //service.printEmployees();
-    System.out.println(service.add(service.getById(1)));
+    System.out.println(service.add(service.getById(2)));
+    System.out.println();
+    System.out.println("----------------printEmployees------------------");
+    service.printEmployees();
+        System.out.println();
+        System.out.println();
+        //System.out.println(employees[0].getName());
+        //System.out.println(EmployeeFactory.indexOf(employees, "Oleksandr"));
+        //System.out.println(EmployeeFactory.addArrays());
 
 
 

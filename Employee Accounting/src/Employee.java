@@ -56,9 +56,11 @@ public class Employee {
         return name;
     }
 
-    public int getId(int i) {
+    public int getId(int id) {
         return id;
     }
-
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }

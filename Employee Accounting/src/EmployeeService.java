@@ -108,6 +108,7 @@ public class EmployeeService {
 
     // находит сотрудника по id, и подменяет информацию о нем на новую. Старую версию сотрудника метод возвращает.
     Employee edit(Employee employee) {
+
         Employee findEmployee = getById(employee.id);
         Employee editEmployee = null;
         if (findEmployee != null) {
@@ -132,9 +133,9 @@ public class EmployeeService {
                 break;
             }
         }
-        Employee[] newEmployeesArray = new Employee[employees.length -1];
+        Employee[] newEmployeesArray = new Employee[employees.length - 1];
         int counter = 0;
-        for( int i = 0; i< employees.length; i++) {
+        for( int i = 0; i < employees.length; i++) {
             if (i != index) {
                 newEmployeesArray[counter] = employees[i];
                 counter++;
@@ -148,11 +149,12 @@ public class EmployeeService {
 
     Employee add(Employee employee) {
         Employee[] newEmployees = new Employee[employees.length + 1];
+        int count = 0;
         for (int i = 0; i < employees.length; i++) {
-            newEmployees[i] = employees[i];
+            newEmployees[count] = employees[i];
+            count++;
         }
-        employee.getId(newEmployees.length-1);
-        newEmployees[newEmployees.length -1] = employee;
+        newEmployees[count] = employee;
         employees = newEmployees;
         return employee;
     }

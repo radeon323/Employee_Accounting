@@ -7,6 +7,23 @@ public class EmployeeFactory {
     static String[] male = {"Oleksandr", "Mykhailo", "Serhii", "Danylo", "Stepan"};
     static String[] female = {"Yevheniia", "Tetyana", "Nadiia"};
 
+    static String[] addArrays() {
+        String[] all = new String[male.length + female.length];
+        int count = 0;
+        for (int i = 0; i < male.length; i++) {
+            all[count] = male[i];
+            count++;
+        }
+        for (int i = 0; i < female.length; i++) {
+            all[count] = female[i];
+            count++;
+        }
+        return all;
+    }
+
+
+
+
     static int random(int min, int max) {
         int delta = max - min;
         double random = Math.random();
@@ -61,24 +78,22 @@ public class EmployeeFactory {
 
     public static Employee[] generateEmployees() {
         int size = male.length + female.length;
+        int count = 1;
         Employee[] employees = new Employee[size];
         for (int i = 0; i < size; i++) {
             employees[i] = generateEmployee();
+            employees[i].id = count;
+            count++;
         }
+
         return employees;
     }
 
-    public static int generateIndex(String name) {
-        Employee[] employees = generateEmployees();
-        String str = Arrays.toString(employees);
-            if (str.contains(name)) {
-                return str.indexOf(name);
-            }
-        return -1;
-    }
-    public static int indexOf(Employee[] employees,String name){
-        for(int index=0;index<employees.length;index++){
-            if(employees[index].getName().equals(name)){
+
+    public static int indexOf(String name){
+        String[] namesOfEmployees = addArrays();
+        for(int index = 0; index < namesOfEmployees.length; index++){
+            if(namesOfEmployees[index].contains(name)){
                 return index;
             }
         }
@@ -88,16 +103,17 @@ public class EmployeeFactory {
 
     public static Employee generateEmployee() {
 
-        int id = generateId();
+        //int id = 0;
+        //int id = generateId();
         String name = generateName();
-        //int id = generateIndex(name);
-        //int id = indexOf(generateEmployees(), name);
+        int id = indexOf(name);
         String gender = generateGender(name);
         int age = generateAge();
         int salary = generateSalary();
         int fixedBugs = generateFixedBugs();
         int defaultBugRate = generateDefaultBugRate();
         return new Employee(id, name, age, salary, gender, fixedBugs, defaultBugRate);
+        //return new Employee(id++, name, age, salary, gender, fixedBugs, defaultBugRate);
     }
 
 }
