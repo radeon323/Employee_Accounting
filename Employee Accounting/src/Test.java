@@ -3,24 +3,39 @@ import java.util.Random;
 
 public class Test {
     public static void main(String[] args) {
-    EmployeeFactory employeeFactory = new EmployeeFactory();
     Employee[] employees = EmployeeFactory.generateEmployees();
-    EmployeeService employeeService = new EmployeeService(EmployeeFactory.generateEmployees());
-    //employeeFactory.generateEmployees();
+    EmployeeService service = new EmployeeService(employees);
 
-    employeeService.printEmployees();
-    System.out.println("Salary to be paid this month - " + employeeService.calculateSalary() + " USD");
-    System.out.println("Bonuses to be paid this month - " + employeeService.calculateBonus() + " USD");
-    System.out.println("Sum to be paid this month - " + employeeService.calculateSalaryBonus() + " USD");
-    EmployeeService.printEmployees(employeeService.getById(1));
-    System.out.println(Arrays.toString(employeeService.getByName("Serhii")));
 
-    System.out.println("Sorted by name " +  Arrays.toString(employeeService.sortByName()));
-    System.out.println("Sorted by name and salary " +  Arrays.toString(employeeService.sortByNameAndSalary()));
-
-    EmployeeService.printEmployees(employeeService.edit(employeeService.getById(1)));
-    System.out.println("Removed " + employeeService.remove((1L)));
-    //System.out.println();
+    System.out.println("----------------printEmployees------------------");
+    service.printEmployees();
+    System.out.println();
+    System.out.println("----------------------------------");
+    System.out.println("Salary to be paid this month - " + service.calculateSalary() + " USD");
+    System.out.println("Bonuses to be paid this month - " + service.calculateBonus() + " USD");
+    System.out.println("Sum to be paid this month - " + service.calculateSalaryBonus() + " USD");
+    System.out.println();
+    System.out.println("-----------------getById-----------------");
+    EmployeeService.printEmployees(service.getById(1));
+    System.out.println();
+    System.out.println("-----------------getByName-----------------");
+    System.out.println(Arrays.toString(service.getByName("Serhii")));
+    System.out.println();
+    System.out.println("-----------------Sort by name-----------------");
+    System.out.println(Arrays.toString(service.sortByName()));
+    System.out.println();
+    System.out.println("-----------------Sort by name and salary-----------------");
+    System.out.println(Arrays.toString(service.sortByNameAndSalary()));
+    System.out.println();
+    System.out.println("---------------edit-------------------");
+    EmployeeService.printEmployees(service.edit(service.getById(1)));
+    System.out.println();
+    System.out.println("----------------remove------------------");
+    System.out.println("Removed " + service.remove((1L)));
+    System.out.println();
+    System.out.println("----------------add------------------");
+    //service.printEmployees();
+    System.out.println(service.add(service.getById(1)));
 
 
 

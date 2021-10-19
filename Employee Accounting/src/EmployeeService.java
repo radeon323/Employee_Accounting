@@ -145,4 +145,17 @@ public class EmployeeService {
 
         return removeEmployee;
     }
+
+    Employee add(Employee employee) {
+        Employee[] newEmployees = new Employee[employees.length + 1];
+        for (int i = 0; i < employees.length; i++) {
+            newEmployees[i] = employees[i];
+        }
+        employee.getId(newEmployees.length-1);
+        newEmployees[newEmployees.length -1] = employee;
+        employees = newEmployees;
+        return employee;
+    }
+
+
 }

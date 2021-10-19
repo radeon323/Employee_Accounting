@@ -56,6 +56,9 @@ public class Employee {
         return name;
     }
 
+    public int getId(int i) {
+        return id;
+    }
 
 
 }
