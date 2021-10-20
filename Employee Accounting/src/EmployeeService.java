@@ -30,6 +30,17 @@ public class EmployeeService {
         }
     }
 
+    public static void printEmployees(Employee[] employees) {
+        for (Employee employee : employees) {
+            if (employee != null) {
+                System.out.println(employee);
+            } else {
+                assert false;
+                System.out.println("There is no such employee with this name " + employee.name);
+            }
+        }
+    }
+
 
 
     // возвращает количество денег необходимое для выплаты зарплат для всех сотрудников в этом месяце
@@ -79,6 +90,7 @@ public class EmployeeService {
             }
         }
         if (count == 0) {
+            System.out.println("There is no such employee with this name " + name);
             return null;
         }
         Employee[] moreThanOne = new Employee[count];

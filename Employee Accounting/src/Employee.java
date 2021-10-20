@@ -7,11 +7,7 @@ public class Employee {
     String gender;
     int fixedBugs;
     double defaultBugRate;
-    int count = 1;
 
-    Employee() {
-        System.out.println("Creation of employee in progress!");
-    }
 
     Employee(int id, String name, int age, int salary, String gender, int fixedBugs, double defaultBugRate) {
         this.id = id;
@@ -22,6 +18,15 @@ public class Employee {
         this.fixedBugs = fixedBugs;
         this.defaultBugRate = defaultBugRate;
     }
+
+    public Employee(int id, String name, int age, int salary, String gender) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+        this.gender = gender;
+    }
+
 
     @Override
     public String toString() {
@@ -54,13 +59,6 @@ public class Employee {
 
     public String getName() {
         return name;
-    }
-
-    public int getId(int id) {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
     }
 
 }
