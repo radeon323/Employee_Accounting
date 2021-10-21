@@ -37,26 +37,6 @@ public class EmployeeFactory {
     }
 
 
-    static int generateAge(){
-        return random(18, 60);
-    }
-
-
-    static int generateSalary(){
-        return random(800, 3000);
-    }
-
-
-    static int generateFixedBugs(){
-        return random(0, 30);
-    }
-
-
-    static int generateDefaultBugRate(){
-        return random(0, 5);
-    }
-
-
     public static Employee[] generateEmployees() {
         Random random = new Random();
         int size = male.length + female.length;
@@ -66,13 +46,13 @@ public class EmployeeFactory {
             String name = generateName();
             id++;
             String gender = generateGender(name);
-            int age = generateAge();
-            int salary = generateSalary();
-            int fixedBugs = generateFixedBugs();
-            int defaultBugRate = generateDefaultBugRate();
+            int age = random(18, 60);
+            int salary = random(800, 3000);
+            int fixedBugs = random(0, 30);
+            int defaultBugRate = random(0, 5);
 
-            double rate = random.nextInt(5);
-            int workedDays = random.nextInt(30);
+            double rate = random(1, 5);
+            int workedDays = random(22, 31);
             String randomPosition = position[random.nextInt(position.length)];
 
             switch (randomPosition) {
