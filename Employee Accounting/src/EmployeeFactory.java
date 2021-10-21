@@ -7,20 +7,6 @@ public class EmployeeFactory {
     static String[] male = {"Oleksandr", "Mykhailo", "Serhii", "Danylo", "Stepan"};
     static String[] female = {"Yevheniia", "Tetyana", "Nadiia"};
 
-    static String[] addArrays() {
-        String[] allEmployees = new String[male.length + female.length];
-        int count = 0;
-        for (String s : male) {
-            allEmployees[count] = s;
-            count++;
-        }
-        for (String s : female) {
-            allEmployees[count] = s;
-            count++;
-        }
-        return allEmployees;
-    }
-
 
     static int random(int min, int max) {
         int delta = max - min;
@@ -71,52 +57,31 @@ public class EmployeeFactory {
     }
 
 
-    // generate ID
-    public static int indexOf(String name){
-        String[] namesOfEmployees = addArrays();
-        for(int index = 0; index < namesOfEmployees.length; index++){
-            if(namesOfEmployees[index].contains(name)){
-                return index;
-            }
-        }
-        return -1;
-    }
-
-
-
-   public static Employee generateEmployee() {
-        String name = generateName();
-        int id = indexOf(name);
-        String gender = generateGender(name);
-        int age = generateAge();
-        int salary = generateSalary();
-        int fixedBugs = generateFixedBugs();
-        int defaultBugRate = generateDefaultBugRate();
-        return  new Employee(id, name, age, salary, gender, fixedBugs, defaultBugRate);
-    }
-
     public static Employee[] generateEmployees() {
         Random random = new Random();
-        int size = addArrays().length;
-        int count = 1;
+        int size = male.length + female.length;
+        int id = 0;
         Employee[] employees = new Employee[size];
         for (int i = 0; i < size; i++) {
-            employees[i] = generateEmployee();
+            String name = generateName();
+            id++;
+            String gender = generateGender(name);
+            int age = generateAge();
+            int salary = generateSalary();
+            int fixedBugs = generateFixedBugs();
+            int defaultBugRate = generateDefaultBugRate();
 
             double rate = random.nextInt(5);
             int workedDays = random.nextInt(30);
             String randomPosition = position[random.nextInt(position.length)];
 
             switch (randomPosition) {
-                case "Designer" -> employees[i] = new Designer(generateEmployee().id, generateEmployee().name, generateEmployee().age, generateEmployee().salary, generateEmployee().gender, rate, workedDays);
-                case "Developer" -> employees[i] = new Developer(generateEmployee().id, generateEmployee().name, generateEmployee().age, generateEmployee().salary, generateEmployee().gender, generateEmployee().fixedBugs);
-                case "Manager" -> employees[i] = new Manager(generateEmployee().id, generateEmployee().name, generateEmployee().age, generateEmployee().salary, generateEmployee().gender);
+                case "Designer" -> employees[i] = new Designer(id, name, age, salary, gender, rate, workedDays);
+                case "Developer" -> employees[i] = new Developer(id, name, age, salary, gender, fixedBugs);
+                case "Manager" -> employees[i] = new Manager(id, name, age, salary, gender);
             }
-
-            employees[i].id = count;
-            count++;
         }
-        return employees;
-    }
+    return employees;
+}
 
 }
