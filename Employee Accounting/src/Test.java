@@ -39,7 +39,7 @@ public class Test {
     service.printEmployees();
     System.out.println();
     System.out.println("----------------add------------------");
-    System.out.println(service.add(service.getById(2)));
+    System.out.println(service.add(EmployeeFactory.generateEmployees()[0]));
     System.out.println();
     System.out.println("----------------printEmployees + add------------------");
     service.printEmployees();
