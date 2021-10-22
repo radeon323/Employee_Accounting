@@ -31,12 +31,9 @@ public class EmployeeService {
     }
 
     public static void printEmployees(Employee[] employees) {
-        for (Employee employee : employees) {
-            if (employee != null) {
-                System.out.println(employee);
-            } else {
-                assert false;
-                System.out.println("There is no such employee with this name " + employee.name);
+        if (employees != null) {
+            for (Employee employee : employees) {
+                    System.out.println(employee);
             }
         }
     }
@@ -162,8 +159,8 @@ public class EmployeeService {
     Employee add(Employee employee) {
         Employee[] newEmployees = new Employee[employees.length + 1];
         int count = 0;
-        for (int i = 0; i < employees.length; i++) {
-            newEmployees[count] = employees[i];
+        for (Employee value : employees) {
+            newEmployees[count] = value;
             count++;
         }
         newEmployees[count] = employee;
